@@ -56,10 +56,6 @@ jobs:
     strategy:
       matrix:
         versions:
-          # Test the lowest minimum supported APIs
-          - android: 5.1
-            android-api: 22
-
           # Test the last 3-4 supported APIs
           - android: 10
             android-api: 29
@@ -98,6 +94,7 @@ jobs:
           export PATH="/usr/local/lib/android/sdk/platform-tools":$PATH
           export JAVA_HOME=$JAVA_HOME_11_X64
           npm i -g cordova@latest
+          npm i
           npm ci
       - name: Run paramedic install
         if: ${{ endswith(env.repo, '/cordova-paramedic') != true }}
