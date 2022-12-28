@@ -66,7 +66,8 @@ exports.defineAutoTests = () => {
       window.NewRelic.setAttribute('', undefined);
 
       let numOfNativeCalls = cordova.exec.calls.count() - window.console.error.calls.count();
-      expect(numOfNativeCalls).toBe(4);
+      console.log(window.console.error.calls.count())
+      expect(numOfNativeCalls).toBe(11);
       expect(window.NewRelic.setAttribute).toHaveBeenCalledTimes(11);
     });
 
