@@ -5,7 +5,7 @@
   "repo": "https://github.com/newrelic/newrelic-cordova-plugin/",
   "scripts": {
     "test": "mocha tests/installation",
-    "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin .",
+    "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin . --outputDir ./coverage",
     "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin ."
   },
   "keywords": [
@@ -18,9 +18,9 @@
   "author": "New Relic",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0",
+    "mocha": "^10.2.0",
     "prettier": "2.7.1",
-    "shelljs": "^0.7.6",
+    "shelljs": "^0.8.5",
     "xcode": "^2.0.0"
   },
   "dependencies": {

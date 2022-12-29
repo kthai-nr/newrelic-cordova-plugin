@@ -1,5 +1,8 @@
 [![Community Plus header](https://github.com/newrelic/opensource-website/raw/main/src/images/categories/Community_Plus.png)](https://opensource.newrelic.com/oss-category/#community-plus)
 
+[![Android Testsuite](https://github.com/kthai-nr/newrelic-cordova-plugin/actions/workflows/Android.yml/badge.svg)](https://github.com/kthai-nr/newrelic-cordova-plugin/actions/workflows/Android.yml)
+[![iOS Testsuite](https://github.com/kthai-nr/newrelic-cordova-plugin/actions/workflows/iOS.yml/badge.svg)](https://github.com/kthai-nr/newrelic-cordova-plugin/actions/workflows/iOS.yml)
+
 
 # New Relic plugin for Cordova
 
