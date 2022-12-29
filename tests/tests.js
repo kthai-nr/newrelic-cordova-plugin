@@ -10,28 +10,28 @@ exports.defineAutoTests = () => {
       expect(window.NewRelic).toBeDefined();
     });
 
-    // it('should have the expected static methods defined', () => {
-    //   expect(window.NewRelic.noticeHttpTransaction).toBeDefined();
-    //   expect(window.NewRelic.noticeDistributedTrace).toBeDefined();
-    //   expect(window.NewRelic.setUserId).toBeDefined();
-    //   expect(window.NewRelic.setAttribute).toBeDefined();
-    //   expect(window.NewRelic.removeAttribute).toBeDefined();
-    //   expect(window.NewRelic.recordBreadcrumb).toBeDefined();
-    //   expect(window.NewRelic.recordCustomEvent).toBeDefined();
-    //   expect(window.NewRelic.startInteraction).toBeDefined();
-    //   expect(window.NewRelic.endInteraction).toBeDefined();
-    //   expect(window.NewRelic.recordError).toBeDefined();
-    //   expect(window.NewRelic.currentSessionId).toBeDefined();
-    //   expect(window.NewRelic.incrementAttribute).toBeDefined();
-    //   expect(window.NewRelic.recordMetric).toBeDefined();
-    //   expect(window.NewRelic.removeAllAttributes).toBeDefined();
-    //   expect(window.NewRelic.setMaxEventBufferTime).toBeDefined();
-    //   expect(window.NewRelic.setMaxEventPoolSize).toBeDefined();
-    //   expect(window.NewRelic.analyticsEventEnabled).toBeDefined();
-    //   expect(window.NewRelic.networkRequestEnabled).toBeDefined();
-    //   expect(window.NewRelic.networkErrorRequestEnabled).toBeDefined();
-    //   expect(window.NewRelic.httpRequestBodyCaptureEnabled).toBeDefined();
-    // });
+    it('should have the expected static methods defined', () => {
+      expect(window.NewRelic.noticeHttpTransaction).toBeDefined();
+      expect(window.NewRelic.noticeDistributedTrace).toBeDefined();
+      expect(window.NewRelic.setUserId).toBeDefined();
+      expect(window.NewRelic.setAttribute).toBeDefined();
+      expect(window.NewRelic.removeAttribute).toBeDefined();
+      expect(window.NewRelic.recordBreadcrumb).toBeDefined();
+      expect(window.NewRelic.recordCustomEvent).toBeDefined();
+      expect(window.NewRelic.startInteraction).toBeDefined();
+      expect(window.NewRelic.endInteraction).toBeDefined();
+      expect(window.NewRelic.recordError).toBeDefined();
+      expect(window.NewRelic.currentSessionId).toBeDefined();
+      expect(window.NewRelic.incrementAttribute).toBeDefined();
+      expect(window.NewRelic.recordMetric).toBeDefined();
+      expect(window.NewRelic.removeAllAttributes).toBeDefined();
+      expect(window.NewRelic.setMaxEventBufferTime).toBeDefined();
+      expect(window.NewRelic.setMaxEventPoolSize).toBeDefined();
+      expect(window.NewRelic.analyticsEventEnabled).toBeDefined();
+      expect(window.NewRelic.networkRequestEnabled).toBeDefined();
+      expect(window.NewRelic.networkErrorRequestEnabled).toBeDefined();
+      expect(window.NewRelic.httpRequestBodyCaptureEnabled).toBeDefined();
+    });
 
     // it('should noticeHttpTransaction', () => {
     //   spyOn(window.NewRelic, "noticeHttpTransaction").and.callThrough();
