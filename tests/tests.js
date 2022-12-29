@@ -80,27 +80,27 @@ exports.defineAutoTests = () => {
       expect(window.NewRelic.recordBreadcrumb).toHaveBeenCalledTimes(2);
     });
 
-    // it('should record custom event', () => {
-    //   spyOn(window.NewRelic, "recordCustomEvent").and.callThrough();
-    //   spyOn(cordova, "exec").and.callThrough();
-    //   spyOn(window.console, "error").and.callThrough();
+    it('should record custom event', () => {
+      spyOn(window.NewRelic, "recordCustomEvent").and.callThrough();
+      spyOn(cordova, "exec").and.callThrough();
+      spyOn(window.console, "error").and.callThrough();
 
-    //   window.NewRelic.recordCustomEvent('eventType', 'eventName', { test: 123, valid: 'yes' });
-    //   window.NewRelic.recordCustomEvent('eventType', '', { test: 123, valid: 'yes' });
-    //   window.NewRelic.recordCustomEvent('eventType', undefined, { test: 123, valid: 'yes' });
+      window.NewRelic.recordCustomEvent('eventType', 'eventName', { test: 123, valid: 'yes' });
+      window.NewRelic.recordCustomEvent('eventType', '', { test: 123, valid: 'yes' });
+      window.NewRelic.recordCustomEvent('eventType', undefined, { test: 123, valid: 'yes' });
 
-    //   // Bad arguments
-    //   window.NewRelic.recordCustomEvent('eventType', null, { test: 123, valid: 'yes' });
-    //   window.NewRelic.recordCustomEvent('eventType', [], { test: 123, valid: 'yes' });
-    //   window.NewRelic.recordCustomEvent('eventType', {}, { test: 123, valid: 'yes' });
+      // Bad arguments
+      window.NewRelic.recordCustomEvent('eventType', null, { test: 123, valid: 'yes' });
+      window.NewRelic.recordCustomEvent('eventType', [], { test: 123, valid: 'yes' });
+      window.NewRelic.recordCustomEvent('eventType', {}, { test: 123, valid: 'yes' });
 
-    //   // Every console call creates a custom event
-    //   let numConsoleErrCalls = window.console.error.calls.count();
-    //   let numOfNativeCalls = cordova.exec.calls.count() - numConsoleErrCalls;
-    //   let totalCustomEventCalls = window.NewRelic.recordCustomEvent.calls.count() - numConsoleErrCalls;
-    //   expect(numOfNativeCalls).toBe(3);
-    //   expect(totalCustomEventCalls).toBe(6);
-    // });
+      // Every console call creates a custom event
+      let numConsoleErrCalls = window.console.error.calls.count();
+      let numOfNativeCalls = cordova.exec.calls.count() - numConsoleErrCalls;
+      let totalCustomEventCalls = window.NewRelic.recordCustomEvent.calls.count() - numConsoleErrCalls;
+      expect(numOfNativeCalls).toBe(3);
+      expect(totalCustomEventCalls).toBe(6);
+    });
 
 
     it('should startInteraction', () => {
