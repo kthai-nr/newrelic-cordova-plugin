@@ -57,14 +57,14 @@ jobs:
       matrix:
         versions:
           # Test the last 3-4 supported APIs
-          - android: 10
-            android-api: 29
+          # - android: 10
+          #   android-api: 29
 
-          - android: 11
-            android-api: 30
+          # - android: 11
+          #   android-api: 30
 
-          - android: 12
-            android-api: 31
+          # - android: 12
+          #   android-api: 31
 
           - android: 12L
             android-api: 32
