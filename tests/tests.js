@@ -33,12 +33,12 @@ exports.defineAutoTests = () => {
       expect(window.NewRelic.httpRequestBodyCaptureEnabled).toBeDefined();
     });
 
-    it('should noticeHttpTransaction', () => {
-      spyOn(window.NewRelic, "noticeHttpTransaction").and.callThrough();
-      window.NewRelic.noticeHttpTransaction("https://fakeurl.com", "GET", 200, Date.now(), Date.now(), 1000, 0);
-      window.NewRelic.noticeHttpTransaction("https://fakeurl.com", "POST", 404, Date.now(), Date.now(), 1000, 0, "fake body");
-      expect(window.NewRelic.noticeHttpTransaction).toHaveBeenCalledTimes(2);
-    });
+    // it('should noticeHttpTransaction', () => {
+    //   spyOn(window.NewRelic, "noticeHttpTransaction").and.callThrough();
+    //   window.NewRelic.noticeHttpTransaction("https://fakeurl.com", "GET", 200, Date.now(), Date.now(), 1000, 0);
+    //   window.NewRelic.noticeHttpTransaction("https://fakeurl.com", "POST", 404, Date.now(), Date.now(), 1000, 0, "fake body");
+    //   expect(window.NewRelic.noticeHttpTransaction).toHaveBeenCalledTimes(2);
+    // });
 
     it('should set userId', () => {
       spyOn(window.NewRelic, "setUserId").and.callThrough();
