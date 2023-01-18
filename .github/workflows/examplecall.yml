@@ -8,3 +8,5 @@ on:
 jobs:
   call:
     uses: ./.github/workflows/update_android_agent.yml
+    with:
+      version-number: ${{ github.event.inputs.version-number }}
