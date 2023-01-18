@@ -16,4 +16,4 @@ jobs:
   run_other_workflow:
     uses: ./.github/workflows/update_android_agent.yml
     with:
-      variable-number: ${{ github.event.inputs.version-number }}
+      version-number: ${{ github.event.inputs.version-number }}
