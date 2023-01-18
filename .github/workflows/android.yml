@@ -18,16 +18,17 @@
 name: Android Testsuite
 
 on:
-  push:
-    paths-ignore:
-      - '**.md'
-      - 'LICENSE'
-      - '.eslint*'
-  pull_request:
-    paths-ignore:
-      - '**.md'
-      - 'LICENSE'
-      - '.eslint*'
+  #push:
+   # paths-ignore:
+    #  - '**.md'
+     # - 'LICENSE'
+      #- '.eslint*'
+  #pull_request:
+   # paths-ignore:
+    #  - '**.md'
+     # - 'LICENSE'
+      #- '.eslint*'
+  workflow_call:
 
 jobs:
   test:
