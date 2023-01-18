@@ -1,0 +1,23 @@
+name: Update Android Agent Version
+on:
+  workflow_call:
+    inputs:
+      version-number:
+        required: true
+        type: string
+jobs:
+  update_version:
+    name: update this
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Update version number
+        run: |
+          sed -i 's/preference name=\"ANDROID_AGENT_VER\" default=\".*\"/preference name=\"ANDROID_AGENT_VER\" default=\"'${{ github.event.inputs.version-number }}'\"/' plugin.xml
+          cat plugin.xml
+          echo Version number: ${{ github.event.inputs.version-number }}
+      - name: Create PR
+        run: gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
