@@ -6,7 +6,14 @@ on:
         required: true
         type: string
 jobs:
-  call:
+  setup_credentials:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup GitHub Credentials
+        run: |
+          git config user.name $GITHUB_ACTOR
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+  run_other_workflow:
     uses: ./.github/workflows/update_android_agent.yml
     with:
-      version-number: ${{ github.event.inputs.version-number }}
+      variable-number: ${{ github.event.inputs.version-number }}
