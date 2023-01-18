@@ -18,6 +18,8 @@ jobs:
           cat plugin.xml
           echo Version number: ${{ github.event.inputs.version-number }}
       - name: Create PR
-        run: gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
+        run: |
+          git checkout -b update_android_agent_${{ github.event.inputs.version-number }}
+          gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
