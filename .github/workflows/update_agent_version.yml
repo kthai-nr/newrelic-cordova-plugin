@@ -44,6 +44,8 @@ jobs:
           git remote -v
           git push origin HEAD
       - name: Create PR
-        run: gh pr create -B develop -H update_${AGENT_NAME}_ver_${{ github.event.inputs.VERSION_NUMBER }} --title 'Updating version' --body 'Created by Github action'
+        run: |
+          echo $AGENT_NAME
+          gh pr create -B develop -H update_${AGENT_NAME}_ver_${{ github.event.inputs.VERSION_NUMBER }} --title 'Updating version' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
