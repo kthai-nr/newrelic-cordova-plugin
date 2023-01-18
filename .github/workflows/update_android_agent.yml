@@ -24,6 +24,7 @@ jobs:
           git commit -m "Updating to Android agent ${{ github.event.inputs.version-number }}"
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-          gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
+          git push https://github.com/kthai-nr/newrelic-cordova-plugin.git HEAD
+        # gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
