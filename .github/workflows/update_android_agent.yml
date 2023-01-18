@@ -28,6 +28,7 @@ jobs:
           git add plugin.xml
           git commit -m "Updated Android Version to ${{ github.event.inputs.version-number }}"
           git remote -v
+          git push origin HEAD
           gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
