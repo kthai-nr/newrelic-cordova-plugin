@@ -9,6 +9,10 @@ jobs:
   setup_credentials:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: kthai-nr/newrelic-cordova-plugin
       - name: Setup GitHub Credentials
         run: |
           git config user.name $GITHUB_ACTOR
