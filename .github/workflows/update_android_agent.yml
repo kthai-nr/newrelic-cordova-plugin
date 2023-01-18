@@ -17,6 +17,10 @@ jobs:
           sed -i 's/preference name=\"ANDROID_AGENT_VER\" default=\".*\"/preference name=\"ANDROID_AGENT_VER\" default=\"'${{ github.event.inputs.version-number }}'\"/' plugin.xml
           cat plugin.xml
           echo Version number: ${{ github.event.inputs.version-number }}
+      - name: Setup GitHub Credentials
+        run: |
+          git config user.name $GITHUB_ACTOR
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
       - name: Create PR
         run: |
           git config --list
