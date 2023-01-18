@@ -24,8 +24,8 @@ jobs:
       - name: Create PR
         run: |
           git config --list
-          git checkout -b "update_android_ver_${{ github.event.inputs.version-number }}
-          git commit -m "Updated Android Version to ${{ github.event.inputs.version-number }}
+          git checkout -b "update_android_ver_${{ github.event.inputs.version-number }}"
+          git commit -m "Updated Android Version to ${{ github.event.inputs.version-number }}"
           git remote -v
           gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
