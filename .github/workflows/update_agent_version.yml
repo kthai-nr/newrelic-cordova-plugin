@@ -1,32 +1,46 @@
-name: Update Android Agent Version
+name: Update Agent Version
 on:
   workflow_call:
     inputs:
-      version-number:
+      VERSION_NUMBER:
         required: true
         type: string
+      IS_ANDROID_AGENT:
+        required: true
+        type: boolean
 jobs:
   update_version:
-    name: update this
+    name: Updating version 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Update version number
         run: |
-          sed -i 's/preference name=\"ANDROID_AGENT_VER\" default=\".*\"/preference name=\"ANDROID_AGENT_VER\" default=\"'${{ github.event.inputs.version-number }}'\"/' plugin.xml
+          if ${{ github.event.inputs.IS_ANDROID_AGENT }}
+          then
+            sed -i 's/preference name=\"ANDROID_AGENT_VER\" default=\".*\"/preference name=\"ANDROID_AGENT_VER\" default=\"'${{ github.event.inputs.VERSION_NUMBER }}'\"/' plugin.xml
+          else 
+            sed -i 's/pod name=\"NewRelicAgent\" spec=\".*\"/pod name=\"NewRelicAgent\" spec=\"'${{ github.event.inputs.VERSION_NUMBER }}'\"/' plugin.xml
+          fi
           cat plugin.xml
-          echo Version number: ${{ github.event.inputs.version-number }}
       - name: Setup GitHub Credentials
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
       - name: Push changes to Github
         run: |
+          if ${{ github.event.inputs.IS_ANDROID_AGENT }}
+          then
+            AGENT_NAME="Android"
+          else
+            AGENT_NAME="iOS"
+          fi
+          echo $AGENT_NAME
           git config --list
-          git checkout -b "update_android_ver_${{ github.event.inputs.version-number }}"
+          git checkout -b "update_${AGENT_NAME}_ver_${{ github.event.inputs.VERSION_NUMBER }}"
           git add plugin.xml
-          git commit -m "Updated Android Version to ${{ github.event.inputs.version-number }}"
+          git commit -m "Updated $AGENT_NAME Version to ${{ github.event.inputs.VERSION_NUMBER }}"
           git remote -v
           git push origin HEAD
       - name: Create Pull Request
@@ -35,7 +49,7 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: '[Example] Simple demo',
+              title: 'Update Android Version to ${{ github.event.inputs.version-number }}',
               owner,
               repo,
               head: 'update_android_ver_${{ github.event.inputs.version-number }}',
