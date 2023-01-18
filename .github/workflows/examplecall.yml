@@ -18,7 +18,8 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           git config --list
-      - name: run_other_workflow
-        uses: ./.github/workflows/update_android_agent.yml
-        with:
-          version-number: ${{ github.event.inputs.version-number }}
+  run_other_workflow:
+    needs: setup_credentials
+    uses: ./.github/workflows/update_android_agent.yml
+    with:
+      version-number: ${{ github.event.inputs.version-number }}
