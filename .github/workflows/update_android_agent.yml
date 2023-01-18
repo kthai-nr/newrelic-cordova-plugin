@@ -20,6 +20,8 @@ jobs:
       - name: Create PR
         run: |
           git checkout -b update_android_agent_${{ github.event.inputs.version-number }}
+          git add plugin.xml
+          git commit -m "Updating to Android agent ${{ github.event.inputs.version-number }}"
           gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
