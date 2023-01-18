@@ -43,11 +43,7 @@ jobs:
           git commit -m "Updated $AGENT_NAME Version to ${{ github.event.inputs.VERSION_NUMBER }}"
           git remote -v
           git push origin HEAD
-  create_pull_request:
-    runs-on: ubuntu-latest
-    needs: update_version
-    steps:
       - name: Create PR
-        run: gh pr create -B base_branch -H branch_to_merge --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        run: gh pr create -B develop -H update_${AGENT_NAME}_ver_${{ github.event.inputs.VERSION_NUMBER }} --title 'Updating version' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
