@@ -21,7 +21,7 @@ jobs:
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-      - name: Create PR
+      - name: Push changes to Github
         run: |
           git config --list
           git checkout -b "update_android_ver_${{ github.event.inputs.version-number }}"
@@ -29,6 +29,7 @@ jobs:
           git commit -m "Updated Android Version to ${{ github.event.inputs.version-number }}"
           git remote -v
           git push origin HEAD
-          gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
+      - name: Create a PR
+        run: gh pr create -B master -H update_android_agent_${{ github.event.inputs.version-number }} --title "Update Android Agent to ${{github.event.inputs.version-number}}" --body "created by gha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
