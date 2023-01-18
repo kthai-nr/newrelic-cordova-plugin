@@ -19,6 +19,6 @@ jobs:
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           git config --list
       - name: run_other_workflow
-        uses: kthai/newrelic-cordova-plugin/.github/workflows/update_android_agent.yml
+        uses: ./.github/workflows/update_android_agent.yml
         with:
           version-number: ${{ github.event.inputs.version-number }}
