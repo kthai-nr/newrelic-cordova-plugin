@@ -108,7 +108,7 @@ var NewRelic = {
     },
 
     sendConsole(type, args) {
-        const argsStr = JSON.stringify(args);
+        const argsStr = JSON.stringify(args, getCircularReplacer());
         this.send('MobileJSConsole', { consoleType: type, args: argsStr });
     },
 
@@ -495,6 +495,24 @@ const NewRelicEvent = class CustomEvent {
         `attributes '${attributes}' are not valid.`);
     }
 };
+
+/**
+ * Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value
+ * Any copyright is dedicated to the Public Domain: https://creativecommons.org/publicdomain/zero/1.0/
+ */
+
+const getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+      if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
+  };
 
 
 module.exports = NewRelic;
