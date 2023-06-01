@@ -62,12 +62,15 @@ jobs:
       - name: Run paramedic install
         if: ${{ endswith(env.repo, '/cordova-paramedic') != true }}
         run: npm i -g github:apache/cordova-paramedic
-
+      - name: Debug simctl devices
+        run: |
+          xcrun simctl list devices available
       - name: Run paramedic tests
         env:
           test_config: 'ios-${{ matrix.versions.ios-version }}.config.json'
           test_plugin_path: ${{ endswith(env.repo, '/cordova-paramedic') && './spec/testable-plugin/' || './' }}
           paramedic: ${{ endswith(env.repo, '/cordova-paramedic') && 'node main.js' || 'cordova-paramedic' }}
         run: |
-          SIMULATOR_DEVICE=$(xcrun simctl list devices available | grep -m 1 "${{ matrix.versions.ios-version }}" | sed -n -e 's/^.*\(iPhone .*OS ${EMU_VERSION}.*\), .*/\1/p')
+          SIMULATOR_DEVICE=$(xcrun simctl list devices available | grep -m 1 -o 'iPhone [^\(]*(.*${{ matrix.versions.ios-version }}.*' | sed 's/^[[:space:]]*//')
+          echo "Selected simulator: $SIMULATOR_DEVICE"
           ${{ env.paramedic }} --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }} --target "$SIMULATOR_DEVICE"
