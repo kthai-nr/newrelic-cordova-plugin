@@ -73,4 +73,4 @@ jobs:
         run: |
           SIMULATOR_DEVICE=$(xcrun simctl list devices available | grep -m 1 -o 'iPhone [^\(]*(.*${{ matrix.versions.ios-version }}.*' | sed 's/^[[:space:]]*//')
           echo "Selected simulator: $SIMULATOR_DEVICE"
-          ${{ env.paramedic }} --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }} --target "$SIMULATOR_DEVICE"
+          ${{ env.paramedic }} --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }} --target "iPhone-13, 15.5"
