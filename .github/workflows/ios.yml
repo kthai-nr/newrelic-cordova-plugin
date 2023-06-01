@@ -35,8 +35,8 @@ jobs:
       matrix:
         versions:
           - os-version: macos-latest
-            ios-version: 16.x
-            xcode-version: latest-stable
+            ios-version: 15.x
+            xcode-version: 13.x
 
     steps:
       - uses: actions/checkout@v2
